@@ -5,6 +5,8 @@
 1. 封装 spring-boot-starter-web启动器
 2. 封装公共返回结果简易版和两级code码的公共异常处理
 3. 对参数校验进行了封装
+4. swagger 的开启和配置
+5. 开启fastJson序列化
 ## 如何使用
 ### pom引用 ###
 引用最新文档版本的依赖
@@ -16,7 +18,7 @@
 </dependency>
 ```
 ### 选择性开启不同的公共异常拦截也可以自定义
-1. 简易版本公共异常的开启@EnableSimpleGlobalException
+1. 使用@EnableSimpleGlobalException开启简易版本公共异常
 ```java
 @SpringBootApplication
 @EnableSimpleGlobalException
@@ -26,7 +28,7 @@ public class WebRestFulApplication {
     }
 }
 ```
-2. 多级code码公共异常的开启@EnableFatherGlobalException
+2. 使用@EnableFatherGlobalException开启多级code码公共异常
 ```java
 @SpringBootApplication
 @EnableFatherGlobalException
@@ -143,3 +145,34 @@ public class WebRestFulApplication {
     @ApiModelProperty(value = "系统响应的回参数据是一个泛型",example = "{}")
     private T data;
 ```
+### 开启swagger
+#### 使用@EnableSwagger 注解开启swagger
+```java
+@EnableSwagger
+@SpringBootApplication
+public class WebRestFulApplication {
+    public static void main(String[] args) {
+        SpringApplication.run(WebRestFulApplication.class,args);
+    }
+}
+```
+#### swagger 的配置
+```yaml
+swagger:
+  title: 标题
+  description: 描述
+  version: v1.0.1
+```
+### 使用@EnableFastJsonHttpConverters开启FastJson序列化
+```java
+@EnableFastJsonHttpConverters
+@SpringBootApplication
+public class WebRestFulApplication {
+    public static void main(String[] args) {
+        SpringApplication.run(WebRestFulApplication.class,args);
+    }
+}
+```
+#### @EnableFastJsonHttpConverters 有两个属性
+1. longToString 将long转换为String字符串 js没有long类型会有经度丢失 默认是false
+2. nullShowValue  是否展示值为null的key 默认是false

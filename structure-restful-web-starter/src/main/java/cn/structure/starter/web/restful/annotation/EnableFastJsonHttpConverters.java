@@ -19,8 +19,14 @@ import java.lang.annotation.*;
 @Import(FastJsonHttpMessageConverters.class)
 public @interface EnableFastJsonHttpConverters {
 
+    /**
+     * 将long转换为String字符串 js没有long类型会有经度丢失
+     */
     boolean longToString() default false;
 
+    /**
+     * 是否展示值为null的key
+     */
     boolean nullShowValue() default false;
 
 

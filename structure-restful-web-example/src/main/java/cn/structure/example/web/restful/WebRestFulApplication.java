@@ -1,7 +1,9 @@
 package cn.structure.example.web.restful;
 
+import cn.structure.starter.web.restful.annotation.EnableFastJsonHttpConverters;
 import cn.structure.starter.web.restful.annotation.EnableFatherGlobalException;
 import cn.structure.starter.web.restful.annotation.EnableSimpleGlobalException;
+import cn.structure.starter.web.restful.annotation.EnableSwagger;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -14,6 +16,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @version 1.0.1
  * @since 2021/1/3 21:25
  */
+@EnableSwagger
+@EnableFastJsonHttpConverters
 @SpringBootApplication
 @EnableSimpleGlobalException
 public class WebRestFulApplication {
